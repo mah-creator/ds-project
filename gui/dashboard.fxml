@@ -58,7 +58,7 @@
             </VBox>
             <MenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="A - Z">
                <items>
-                  <MenuItem mnemonicParsing="false" text="A - Z" />
+                  <MenuItem mnemonicParsing="false" onAction="#listBooks" text="A - Z" />
                   <MenuItem mnemonicParsing="false" text="author" />
                   <MenuItem mnemonicParsing="false" text="publisher" />
                   <MenuItem mnemonicParsing="false" text="publish date" />
@@ -75,7 +75,7 @@
       </HBox>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <content>
-            <GridPane fx:id="gridPane" gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0">
+            <GridPane fx:id="bookGridPane" gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
