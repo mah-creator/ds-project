@@ -1,6 +1,8 @@
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,13 +13,14 @@ import javafx.scene.text.Font;
 public class MainController implements Initializable{
     private int currentRow = 1;
     private Library library;
+    private Book[] bookList;
 
     @FXML
     GridPane bookGridPane;
 
     @FXML
     public void listBooks(){
-        for (Book book : library.getBookList()) {
+        for (Book book : bookList) {
             bookGridPane.addRow(currentRow++, 
                                 new Label_18(book.getTitle()), 
                                 new Label_18(book.getAuther()), 
@@ -46,13 +49,19 @@ public class MainController implements Initializable{
         BuyButton(){
             super("Buy");
             
-            // setOnAction(e -> Library.add(Library.getActiveUser));
+            setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                }
+            });
+            
         }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         library = new Library();
+        bookList  = library.getBookList();
     }
 
     
