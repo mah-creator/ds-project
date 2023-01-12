@@ -1,32 +1,29 @@
-import java.util.Scanner;
 import java.io.File;
 
+import java.util.*;
+
 public class BookDatabase {
-    private Book[] books;
-    private int attributesNumber = Book.ATTRIBUTES_NUMBER;
+    private TreeMap<String, Book> bookList = new TreeMap();
     private int booksNumber;
+    private final String dataFilePath = ".\\data\\books_file.txt";
 
     private Scanner input;
 
-    public BookDatabase(String dataFilePath) throws Exception{
+    public BookDatabase() throws Exception{
         input = new Scanner(new File(dataFilePath));
 
         booksNumber = input.nextInt();
-        books = new Book[booksNumber];
 
         extractData();
     }
 
-    public Book[] getBooks(){
-        return books;
-    }
     public int getBooksNumber(){
     	return booksNumber;
     }
 
     private void extractData(){
         Book tempBook;
-        String[] tempBookAttributes = new String[attributesNumber];
+        String[] tempBookAttributes = new String[Book.ATTRIBUTES_NUMBER];
         
         String[] line;
         String attributeValue;
@@ -37,14 +34,22 @@ public class BookDatabase {
             tempBook = new Book();
 
             tempBookAttributes[0] = input.nextLine();
-            for (int j = 1; j < attributesNumber; j++) {
+            for (int j = 1; j < Book.ATTRIBUTES_NUMBER; j++) {
                 line = input.nextLine().split(" -> ");
                 attributeValue = line.length == 1 ? null : line[1]; 
                 tempBookAttributes[j] = attributeValue;
             }
             tempBook.setAttributes(tempBookAttributes);
 
-            books[i] = tempBook;
+            bookList.put(tempBook.getTitle(), tempBook);
         }
+    }
+
+    public Book getBook(String bookName){
+        return bookList.get(bookName);
+    }
+
+    public Book[] getBookList(){
+        return (Book[])bookList.values().toArray();
     }
 }
