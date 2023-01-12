@@ -9,12 +9,14 @@ public class BookDatabase {
 
     private Scanner input;
 
-    public BookDatabase() throws Exception{
-        input = new Scanner(new File(dataFilePath));
-
-        booksNumber = input.nextInt();
-
-        extractData();
+    public BookDatabase(){
+        try{
+            input = new Scanner(new File(dataFilePath));
+    
+            booksNumber = input.nextInt();
+    
+            extractData();
+        }catch(Exception e){System.out.println(e.getMessage());}
     }
 
     public int getBooksNumber(){
@@ -50,6 +52,6 @@ public class BookDatabase {
     }
 
     public Book[] getBookList(){
-        return (Book[])bookList.values().toArray();
+        return bookList.values().toArray(new Book[bookList.size()]);
     }
 }
