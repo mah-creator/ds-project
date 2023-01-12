@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -27,7 +28,7 @@ public class MainController implements Initializable{
                                 new Label_18(book.getPublisher()), 
                                 new Label_18(book.getPublishDate()), 
                                 new Label_18(String.format("%.2f", book.getRating())), 
-                                new BuyButton()
+                                new BuyButton(currentRow)
                                 );
         }
     }
@@ -46,8 +47,10 @@ public class MainController implements Initializable{
      * Button class dedicated to buy stuff
      */
     class BuyButton extends Button{
-        BuyButton(){
+        int rowIndex;
+        BuyButton(int rowIndex){
             super("Buy");
+            this.rowIndex = rowIndex;
             
             setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -63,6 +66,4 @@ public class MainController implements Initializable{
         library = new Library();
         bookList  = library.getBookList();
     }
-
-    
 }
