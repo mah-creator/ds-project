@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="480.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="466.0" prefWidth="594.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
       <HBox alignment="CENTER" prefHeight="40.0" prefWidth="378.0" spacing="10.0">
          <VBox.margin>
@@ -55,10 +55,11 @@
                      </font></TextField>
                </children>
             </VBox>
-            <MenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0">
+            <MenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="A - Z">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#az" text="A - Z" />
                   <MenuItem mnemonicParsing="false" text="author" />
+                  <MenuItem mnemonicParsing="false" text="publisher" />
                   <MenuItem mnemonicParsing="false" text="publish date" />
                   <MenuItem mnemonicParsing="false" text="rating" />
                </items>
@@ -71,10 +72,11 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <GridPane gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0" VBox.vgrow="ALWAYS">
+      <GridPane gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0" vgap="3.0" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="20.0" prefWidth="98.99996337890624" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="64.60003662109375" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="150.0" minWidth="25.0" prefWidth="82.79998779296875" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="60.0" minWidth="10.0" prefWidth="63.80001220703127" />
         </columnConstraints>
@@ -92,12 +94,17 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="publish date" GridPane.columnIndex="2">
+            <Label text="publish date" GridPane.columnIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="rating" GridPane.columnIndex="3">
+            <Label text="rating" GridPane.columnIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="publisher" GridPane.columnIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
