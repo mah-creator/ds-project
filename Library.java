@@ -30,4 +30,9 @@ public class Library {
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
         return userBooksList.toArray(new Book[userBooksList.size()]);
     }
+
+    // logs-out the user by removing the activeUser pointer
+    void logUserOut(){
+        activeUser = null;
+    }
 }
