@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -27,6 +29,12 @@ public class MainController implements Initializable{
     // the grid used at the dashboard to list all books
     @FXML
     GridPane dashboardBookGrid;
+
+    @FXML
+    TextField loginUserNameField;
+
+    @FXML
+    PasswordField loginPasswordField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +70,11 @@ public class MainController implements Initializable{
         Parent parent = FXMLLoader.load((new File(INITIAL_FXML_FILE)).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
+    }
+
+    @FXML
+    public void logIn() throws Exception{
+        library.logUserIn(loginUserNameField.getText(), loginPasswordField);
     }
 
     @FXML
