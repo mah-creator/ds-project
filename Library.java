@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 public class Library {
     private BookDatabase bookDatabase = new BookDatabase();
+    private UserDatabase userDatabase = new UserDatabase();
     private HashMap<User, ArrayList<Book>> userBookMap = new HashMap();
 
     // this defines the user that is currently logged into the library system
