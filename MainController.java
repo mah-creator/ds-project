@@ -36,4 +36,66 @@ public class MainController implements Initializable{
         // get the stage from where it was created (the javafx.application.Application class)
         primaryStage = App.primaryStage;
     }
+
+    // list all of the books in BookDatabase into the dashboardBookGrid
+    @FXML
+    public void listBooksForDashboard(){
+        int currentRow = 1;
+        for (Book book : bookList) {
+            dashboardBookGrid.addRow(currentRow, 
+                                new Label_18(book.getTitle()), 
+                                new Label_18(book.getAuther()), 
+                                new Label_18(book.getPublisher()), 
+                                new Label_18(book.getPublishDate()), 
+                                new Label_18(String.format("%.2f", book.getRating())), 
+                                new BuyButton(currentRow)
+                                );
+            currentRow++;
+        }
+    } 
+    
+    // logs out the user from the library system
+    // then sets the scene to the first login page
+    @FXML
+    public void logOut() throws Exception{
+        library.logUserOut();
+        Parent parent = FXMLLoader.load((new File(INITIAL_FXML_FILE)).toURI().toURL());
+        Scene scene = new Scene(parent);
+        primaryStage.setScene(scene);
+    }
+
+    /**
+     * Label class of font size 18
+     */
+    class Label_18 extends Label{
+        Label_18(String text){
+            super(text);
+            setFont(new Font(18));
+        }
+    }
+    
+    /**
+     * Button class dedicated to buy stuff
+     */
+    class BuyButton extends Button{
+        private int rowIndex;
+        BuyButton(int rowIndex){
+            super("Buy");
+            this.rowIndex = rowIndex;
+            
+            setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    Label_18 ownedLabel = new Label_18("Owned");
+
+                    // remove the "Buy" button and replace it with the label "Owned" after purchasing a book
+                    dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
+                    GridPane.setConstraints(ownedLabel, 5, rowIndex);
+
+                    // add the purchased book to the corrosponding user (activeUser in the Library class)
+                    library.add(bookList[BuyButton.this.rowIndex - 1]);
+                }
+            });
+        }
+    }
 }
