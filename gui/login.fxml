@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="352.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="352.0" spacing="10.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
@@ -21,11 +21,11 @@
             </Label>
          </children>
       </StackPane>
-      <TextField fx:id="loginUserNameField" prefHeight="26.0" prefWidth="279.0" promptText="user name">
+      <TextField fx:id="userNameField" prefHeight="26.0" prefWidth="279.0" promptText="user name">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <PasswordField fx:id="loginPasswordField" promptText="password">
+      <PasswordField fx:id="passwordField" promptText="password">
          <font>
             <Font size="18.0" />
          </font></PasswordField>
