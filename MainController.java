@@ -1,6 +1,4 @@
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,38 +7,42 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainController implements Initializable{
+    // the initial fxml file to be loaded into the programme
     static final String INITIAL_FXML_FILE = ".\\gui\\login.fxml";
+
     private Library library;
     private Book[] bookList;
+
     private Stage primaryStage;
 
+    // the grid used at the dashboard to list all books
     @FXML
-    GridPane bookGridPane;
+    GridPane dashboardBookGrid;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         library = new Library();
         bookList  = library.getBookList();
 
+        // get the stage from where it was created (the javafx.application.Application class)
         primaryStage = App.primaryStage;
     }
 
+    // list all of the books in BookDatabase into the dashboardBookGrid
     @FXML
     public void listBooksForDashboard(){
         int currentRow = 1;
         for (Book book : bookList) {
-            bookGridPane.addRow(currentRow, 
+            dashboardBookGrid.addRow(currentRow, 
                                 new Label_18(book.getTitle()), 
                                 new Label_18(book.getAuther()), 
                                 new Label_18(book.getPublisher()), 
@@ -52,6 +54,8 @@ public class MainController implements Initializable{
         }
     } 
     
+    // logs out the user from the library system
+    // then sets the scene to the first login page
     @FXML
     public void logOut() throws Exception{
         library.logUserOut();
@@ -83,8 +87,12 @@ public class MainController implements Initializable{
                 @Override
                 public void handle(ActionEvent event) {
                     Label_18 ownedLabel = new Label_18("Owned");
-                    bookGridPane.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
+
+                    // remove the "Buy" button and replace it with the label "Owned" after purchasing a book
+                    dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
                     GridPane.setConstraints(ownedLabel, 5, rowIndex);
+
+                    // add the purchased book to the corrosponding user (activeUser in the Library class)
                     library.add(bookList[BuyButton.this.rowIndex - 1]);
                 }
             });
