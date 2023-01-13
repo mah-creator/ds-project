@@ -64,6 +64,13 @@ public class MainController implements Initializable{
         primaryStage.setScene(scene);
     }
 
+    @FXML
+    public void goToSignUpPage() throws Exception{
+        Parent parent = FXMLLoader.load((new File(".\\gui\\signup.fxml")).toURI().toURL());
+        Scene scene = new Scene(parent);
+        primaryStage.setScene(scene);
+    }
+
     /**
      * Label class of font size 18
      */
