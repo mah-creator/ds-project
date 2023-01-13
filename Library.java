@@ -35,4 +35,8 @@ public class Library {
     void logUserOut(){
         activeUser = null;
     }
+
+    void logUserIn(String email, String password){
+        
+    }
 }
