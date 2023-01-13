@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="466.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Test1">
+<VBox prefHeight="466.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -76,7 +76,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button layoutX="258.0" layoutY="22.0" mnemonicParsing="true" prefHeight="45.0" prefWidth="161.0" style="-fx-background-color: #0eeda2; -fx-border-color: black;-fx-border-radius: 2;" text="Sign up" textFill="#ffffff" translateX="50.0">
+            <Button layoutX="258.0" layoutY="22.0" mnemonicParsing="true" onAction="#signUp" prefHeight="45.0" prefWidth="161.0" style="-fx-background-color: #0eeda2; -fx-border-color: black;-fx-border-radius: 2;" text="Sign up" textFill="#ffffff" translateX="50.0">
                <font>
                   <Font size="24.0" />
                </font>

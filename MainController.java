@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class MainController implements Initializable{
     // the initial fxml file to be loaded into the programme
-    static final String INITIAL_FXML_FILE = ".\\gui\\login.fxml";
+    static final String INITIAL_FXML_FILE = "gui/login.fxml";
 
     private Library library;
     private Book[] bookList;
