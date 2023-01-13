@@ -11,7 +11,7 @@ public class App extends Application{
     public void start(Stage primaryStage) throws Exception {
         App.primaryStage = primaryStage;
         primaryStage.setMinWidth(800);
-        Scene scene = new Scene(FXMLLoader.load((new File(MainController.INITIAL_FXML_FILE).toURI().toURL())), 400, 400);
+        Scene scene = new Scene(FXMLLoader.load((new File(MainController.INITIAL_FXML_FILE).toURI().toURL())));
         scene.getRoot().requestFocus();
         primaryStage.setScene(scene);
         primaryStage.show();

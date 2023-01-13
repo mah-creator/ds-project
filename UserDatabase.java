@@ -2,7 +2,9 @@ import java.util.HashMap;
 public class UserDatabase {
     private HashMap<String,User> listOfUser=new HashMap<>();
     // final User admin= new User();
-
+    UserDatabase(){
+        listOfUser.put("123", new User(0, "123", 0, "123", "abc", "abc"));
+    }
     /**
      * 
      * @param email the email whose enterd by the someone to signin or create account 
