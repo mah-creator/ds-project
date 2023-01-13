@@ -21,11 +21,11 @@
             </Label>
          </children>
       </StackPane>
-      <TextField fx:id="userNameField" prefHeight="26.0" prefWidth="279.0" promptText="user name">
+      <TextField fx:id="loginUserNameField" prefHeight="26.0" prefWidth="279.0" promptText="user name">
          <font>
             <Font size="18.0" />
          </font></TextField>
-      <PasswordField fx:id="passwordField" promptText="password">
+      <PasswordField fx:id="loginPasswordField" promptText="password">
          <font>
             <Font size="18.0" />
          </font></PasswordField>
