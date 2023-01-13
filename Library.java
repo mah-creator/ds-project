@@ -1,9 +1,9 @@
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 public class Library {
     private BookDatabase bookDatabase = new BookDatabase();
-    private HashMap<User, TreeMap<String, Book>> hashMap = new HashMap();
+    private HashMap<User, ArrayList<Book>> userBookMap = new HashMap();
     private User activeUser = new User();
     
     public Book[] getBookList() {
@@ -11,6 +11,21 @@ public class Library {
     }
 
     void add(Book book){
-        hashMap.get(activeUser).put(book.getTitle(), book);
+        if(userBookMap.containsKey(activeUser))
+            userBookMap.get(activeUser).add(book);
+
+        else if(!userBookMap.containsKey(activeUser)){
+            ArrayList<Book> bookList = new ArrayList();
+            bookList.add(book);
+        }
+    }
+
+    Book[] getUserBooksList(){
+        ArrayList<Book> userBooksList = userBookMap.get(activeUser);
+        return userBooksList.toArray(new Book[userBooksList.size()]);
+    }
+
+    void logUserOut(){
+        activeUser = null;
     }
 }
