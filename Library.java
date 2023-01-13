@@ -7,7 +7,7 @@ public class Library {
 
     // this defines the user that is currently logged into the library system
     // where only one user can use the system at a time
-    private User activeUser = new User();
+    private User activeUser;
     
     // returns all books from the BookDatabase
     Book[] getBookList() {
