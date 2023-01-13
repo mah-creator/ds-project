@@ -74,7 +74,7 @@ public class MainController implements Initializable{
 
     @FXML
     public void logIn() throws Exception{
-        library.logUserIn(loginUserNameField.getText(), loginPasswordField);
+        library.logUserIn(loginUserNameField.getText(), loginPasswordField.getText());
     }
 
     @FXML
