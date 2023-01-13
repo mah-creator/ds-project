@@ -25,7 +25,7 @@ public class Library {
             bookList.add(book);
         }
     }
-
+    
     // returns the list of books corresponding to the logged-in user
     Book[] getUserBooksList(){
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
@@ -37,7 +37,18 @@ public class Library {
         activeUser = null;
     }
 
-    void logUserIn(String email, String password){
+    boolean logUserIn(String email, String password){
+        // get the user if exists and check password validity
+        User user = userDatabase.getUser(email, password);
+
+        if(user == null) return false;
         
+        if(!userBookMap.containsKey(user)){ 
+            ArrayList<Book> bookList = new ArrayList();
+            userBookMap.put(user, bookList);
+        }
+
+        activeUser = user;
+        return true;
     }
 }
