@@ -1,4 +1,2 @@
-Test.java
-Test*.java
-Test**.java
+*Test*.*
 *.class
