@@ -2,8 +2,8 @@ import java.util.HashMap;
 public class UserDatabase {
     private HashMap<String,User> listOfUser=new HashMap<>();
     // final User admin= new User();
-    UserDatabase(){
-        listOfUser.put("123", new User(0, "123", 0, "123", "abc", "abc"));
+    public UserDatabase(){
+        addUser(10, 20, "123", "123", "123", "null");
     }
     /**
      * 
@@ -40,5 +40,14 @@ public class UserDatabase {
         user=new User(id, password, age, email, firstName, lastName);
         listOfUser.put(email, user);
         return user;
+    }
+
+    /**
+     * @param email the email which defines the user
+     * @param password the password that verifies the user
+     * @return the User object iff the password checks 
+     */
+    public User getUser(String email, String password){
+        return CheckValidate(email, password)? listOfUser.get(email):null;
     }
 }

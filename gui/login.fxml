@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="352.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="352.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
@@ -26,32 +26,18 @@
             </Label>
          </children>
       </StackPane>
-      <TextField fx:id="loginUserNameField" prefHeight="26.0" prefWidth="279.0" promptText="user name">
+      <TextField fx:id="userNameField" prefHeight="26.0" prefWidth="279.0" promptText="user name" />
+      <PasswordField fx:id="passwordField" promptText="password" />
+      <Button mnemonicParsing="false" onAction="#logIn" text="Login" translateY="15.0" />
+      <Label fx:id="massage" text=" " textFill="#f82222" translateY="17.0">
          <font>
-            <Font size="18.0" />
-         </font></TextField>
-      <PasswordField fx:id="loginPasswordField" promptText="password">
-         <font>
-            <Font size="18.0" />
-         </font></PasswordField>
-      <Button mnemonicParsing="false" onAction="#buttonLogIn" text="Login" translateX="-14.0">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
-      <Label fx:id="errorDsta" prefHeight="27.0" prefWidth="132.0" text=" " textFill="#c62222" translateX="-18.0" translateY="5.0">
-         <font>
-            <Font name="System Bold" size="18.0" />
+            <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="332.0" spacing="10.0" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button alignment="TOP_CENTER" maxHeight="25.0" minHeight="20.0" mnemonicParsing="false" onAction="#buttonNewAcc" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Create a new account" textFill="#2a16dc">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding></Button>
+            <Label text="Or" />
+            <Button mnemonicParsing="false" onAction="#goToSignUpPage" text="Create a new account" textFill="#2a16dc" />
          </children>
       </HBox>
    </children>

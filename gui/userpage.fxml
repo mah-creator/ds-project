@@ -24,7 +24,7 @@
             <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="38.0" text=" ">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#logOut" text="log out" />
-                <MenuItem mnemonicParsing="false" onAction="#viewLib" text="review library" />
+                <MenuItem mnemonicParsing="false" onAction="#goToDashBord" text="review library" />
               </items>
             </MenuButton>
          </children></HBox>
@@ -64,8 +64,6 @@
                                     <Font name="System Bold Italic" size="30.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="82.0" style="-fx-background-color: blue;" text="view" translateX="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Button mnemonicParsing="false" style="-fx-background-color: red;" text="Deleat" translateX="91.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                      </children>

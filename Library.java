@@ -5,13 +5,12 @@ public class Library {
     private BookDatabase bookDatabase = new BookDatabase();
     private UserDatabase userDatabase = new UserDatabase();
     private HashMap<User, ArrayList<Book>> userBookMap = new HashMap();
-
     // this defines the user that is currently logged into the library system
     // where only one user can use the system at a time
-    private User activeUser;
-    
+    public User activeUser;
     // returns all books from the BookDatabase
     Book[] getBookList() {
+        
         return bookDatabase.getBookList();
     }
 
@@ -27,9 +26,9 @@ public class Library {
     }
     
     // returns the list of books corresponding to the logged-in user
-    Book[] getUserBooksList(){
+    ArrayList<Book> getUserBooksList(){
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
-        return userBooksList.toArray(new Book[userBooksList.size()]);
+        return userBooksList;
     }
 
     // logs-out the user by removing the activeUser pointer
