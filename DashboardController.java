@@ -71,12 +71,17 @@ public class DashboardController extends MainController implements Initializable
                 public void handle(ActionEvent event) {
                     Label_18 ownedLabel = new Label_18("Owned");
 
-                    // remove the "Buy" button and replace it with the label "Owned" after purchasing a book
-                    dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
-                    GridPane.setConstraints(ownedLabel, 5, rowIndex);
+                    try {
+                        // add the purchased book to the corrosponding user (activeUser in the Library class)
+                        library.add(bookList[BuyButton.this.rowIndex - 1]);
+                        
+                        // remove the "Buy" button and replace it with the label "Owned" after purchasing a book
+                        dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
+                        GridPane.setConstraints(ownedLabel, 5, rowIndex);
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                    }
 
-                    // add the purchased book to the corrosponding user (activeUser in the Library class)
-                    library.add(bookList[BuyButton.this.rowIndex - 1]);
                 }
             });
         }
