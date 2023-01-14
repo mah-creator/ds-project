@@ -21,26 +21,27 @@ public class LoginController extends MainController implements Initializable{
     PasswordField passwordField;
 
     @FXML
+    public void logIn() throws Exception{
+
+        try {
+            library.logUserIn(userNameField.getText(), passwordField.getText());
+            Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
+            Scene scene = new Scene(parent);
+            primaryStage.setScene(scene);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            e.printStackTrace();
+
+            userNameField.setText("");
+            passwordField.setText("");
+            primaryStage.getScene().getRoot().requestFocus();
+        }
+    }
+
+    @FXML
     public void goToSignUpPage() throws Exception{
         Parent parent = FXMLLoader.load((new File(".\\gui\\signup.fxml")).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
     }
-
-    @FXML
-    public void logIn() throws Exception{
-            try {
-                library.logUserIn(userNameField.getText(), passwordField.getText());
-                Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
-                Scene scene = new Scene(parent);
-                primaryStage.setScene(scene);
-            } catch (Exception e) {
-                e.printStackTrace();
-                
-                userNameField.setText("");
-                passwordField.setText("");
-                primaryStage.getScene().getRoot().requestFocus();
-            }
-    }
-    
 }

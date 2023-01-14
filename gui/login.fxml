@@ -29,10 +29,11 @@
          <font>
             <Font size="18.0" />
          </font></PasswordField>
-      <Button mnemonicParsing="false" onAction="#logIn" text="Login">
+      <Button mnemonicParsing="false" onAction="#logIn" prefHeight="41.0" prefWidth="70.0" text="login">
          <font>
-            <Font size="14.0" />
-         </font></Button>
+            <Font size="18.0" />
+         </font>
+      </Button>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="332.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
             <Button alignment="TOP_CENTER" maxHeight="25.0" minHeight="20.0" mnemonicParsing="false" onAction="#goToSignUpPage" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Create a new account" textFill="#2a16dc">

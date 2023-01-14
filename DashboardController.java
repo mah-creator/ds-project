@@ -43,7 +43,8 @@ public class DashboardController extends MainController implements Initializable
     private void listBooksForDashboard(){
         int currentRow = 1;
         for (Book book : bookList) {
-
+            if (userHasBook(book)) continue;
+            
             dashboardBookGrid.addRow(currentRow, 
                 new Label_18(book.getTitle()), 
                 new Label_18(book.getAuther()), 
@@ -55,6 +56,12 @@ public class DashboardController extends MainController implements Initializable
 
             currentRow++;
         }
+    }
+    private boolean userHasBook(Book book){
+        for (Book book2 : library.getUserBooksList()) {
+            if(book.equals(book2)) return true;
+        }
+        return false;
     }
 
     /**
@@ -78,7 +85,8 @@ public class DashboardController extends MainController implements Initializable
                         // remove the "Buy" button and replace it with the label "Owned" after purchasing a book
                         dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
                         GridPane.setConstraints(ownedLabel, 5, rowIndex);
-                    } catch (IllegalArgumentException e) {
+                    } catch (IllegalStateException e) {
+                        System.out.println(e.getMessage() + "\n");
                         e.printStackTrace();
                     }
 
