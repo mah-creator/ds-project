@@ -48,6 +48,7 @@ public class BookDatabase {
     }
 
     public Book getBook(String bookName){
+        if(!bookList.containsKey(bookName) || bookList.get(bookName) == null) throw new IllegalStateException("this Book isn't in the database");
         return bookList.get(bookName);
     }
 

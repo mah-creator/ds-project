@@ -7,8 +7,11 @@ public class UserDatabase {
      * @param email the email whose enterd by the someone to signin or create account 
      * @return return object of user if exist else null
      */
-    private User exist( String email){
-        return listOfUser.get(email);
+    private boolean exist(String email){
+        if(listOfUser.containsKey(email)){
+            return listOfUser.get(email) != null;
+        }
+        return false;
     }
 
     /**
@@ -17,9 +20,9 @@ public class UserDatabase {
      * @param password  the email whose enterd by the someone to signin
      * @return if the email  is exist and have the same password whose enterd return true else false
      */
-    public boolean CheckValidate(String email,String password){
-        User user=exist(email);
-        return (user!=null&&user.getPassword().equals(password))? true:false;
+    public boolean checkValidity(String email,String password){
+        return (exist(email) && listOfUser.get(email).getPassword().equals(password))? true:false;
+        // this catch is necessary if there's no mapped user to this email, then listOfUser.get(email) = null
     }
     /**
      * if the person not have account in library  promt frome you add some information
@@ -32,9 +35,10 @@ public class UserDatabase {
      * @return if the email hase enterd id exist return null else return the User object whose created
      */
     public User addUser(int id,int age, String password ,String email,String firstName,String lastName){
-        User user=exist(email);
-        if(user!=null) return null;
-        user=new User(id, password, age, email, firstName, lastName);
+
+        if(exist(email)) throw new IllegalArgumentException("This email is already registered");
+
+        User user=new User(id, password, age, email, firstName, lastName);
         listOfUser.put(email, user);
         return user;
     }
@@ -44,7 +48,8 @@ public class UserDatabase {
      * @param password the password that verifies the user
      * @return the User object iff the password checks 
      */
-    public User getUser(String email, String password){
-        return CheckValidate(email, password)? listOfUser.get(email):null;
+    public User getUser(String email, String password) {
+        if(checkValidity(email, password)) return listOfUser.get(email);
+        throw new IllegalArgumentException("wrong email or password");
     }
 }
