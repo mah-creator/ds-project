@@ -4,7 +4,7 @@ public class Book {
     private float rating;
     private long isbn;
 
-    public static final int ATTRIBUTES_NUMBER = 8;
+    public static final int ATTRIBUTES_NUMBER = DatabaseColumn.values().length;
 
     public int getID() {
         return bookID;
@@ -29,6 +29,19 @@ public class Book {
     }
     public String getPublishDate() {
         return publishDate;
+    }
+    
+    public String[] getStringAttributes(){
+        String[] stringAttributes = new String[ATTRIBUTES_NUMBER];
+        stringAttributes[DatabaseColumn.ID.value] = getID() + "";
+        stringAttributes[DatabaseColumn.TITLE.value] = getTitle();
+        stringAttributes[DatabaseColumn.AUTHOR.value] = getAuther();
+        stringAttributes[DatabaseColumn.ISBN.value] = getIsbn() + "";
+        stringAttributes[DatabaseColumn.PUBLISHER.value] = getPublisher();
+        stringAttributes[DatabaseColumn.TOTAL_PAGES.value] = getTotalPages() + "";
+        stringAttributes[DatabaseColumn.RATING.value] = getRating() + "";
+        stringAttributes[DatabaseColumn.PUBLISH_DATA.value] = getPublishDate();
+        return stringAttributes;
     }
 
     
