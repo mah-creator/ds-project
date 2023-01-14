@@ -98,7 +98,6 @@ total_pages -> 450
 rating -> 3.7
 published_date -> 21/10/2022
 
-11
 12
 title -> Book l
 author -> Mohammed Abo Aqlain
