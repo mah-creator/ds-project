@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -21,15 +22,25 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
 public class DashboardController extends MainController implements Initializable{
-    // the number off attributes that will be displayed in the dashboard of the programme
-    static final int BOOK_ATTRIBUTES_TO_PREVIEW = 5;
 
-    // a difinition of how the attributes are ordered
-    static final int TITLE = 0;
-    static final int AUTHOR = 1;
-    static final int PUBLISHER = 2;
-    static final int PUBLUSH_DATE = 3;
-    static final int RATING = 4;
+    private SortCriteria sortCriteria;
+
+    @FXML
+    MenuButton sortMenuButton;
+
+    @FXML
+    void sortName(){listBooksForDashboard(SortCriteria.BOOK_NAME);}
+    @FXML
+    void sortAuthor(){listBooksForDashboard(SortCriteria.BOOK_AUTHOR);}
+    @FXML
+    void sortPublisher(){listBooksForDashboard(SortCriteria.BOOK_PUBLISHER);}
+    @FXML
+    void sortPublishDate(){listBooksForDashboard(SortCriteria.BOOK_PUBLISH_DATE);}
+    @FXML
+    void sortRating(){listBooksForDashboard(SortCriteria.BOOK_RATING);}
+
+    // the number off attributes that will be displayed in the dashboard of the programme
+    static final int BOOK_ATTRIBUTES_TO_PREVIEW = SortCriteria.values().length;
 
     // the grid which lists the books to the user
     @FXML
@@ -47,7 +58,7 @@ public class DashboardController extends MainController implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listBooksForDashboard();
+        listBooksForDashboard(SortCriteria.BOOK_NAME);
     
         setUpFadeTransition();
 
@@ -78,25 +89,29 @@ public class DashboardController extends MainController implements Initializable
         primaryStage.setScene(scene);
     }
 
-    private void listBooksForDashboard(){
+    private void listBooksForDashboard(SortCriteria sortCriteria){
+        this.sortCriteria = sortCriteria;
+        dashboardBookGrid.getChildren().remove(6, dashboardBookGrid.getChildren().size());
+        sortMenuButton.setText(sortCriteria.sortLabel);
         int currentRow = 1;
-        for (Book book : bookList) {
+        for (Book book : getSortedBooks(sortCriteria.value)) {
             // dont list the book at dashboard
             // if the logged-in user owns it
             if (userHasBook(book)) continue;
 
             // gets the attributes listed above
             Label_18[] tempBookAttributes = new Label_18[BOOK_ATTRIBUTES_TO_PREVIEW];
-            tempBookAttributes[TITLE] = new Label_18(book.getTitle());
-            tempBookAttributes[AUTHOR] = new Label_18(book.getAuther());
-            tempBookAttributes[PUBLISHER] = new Label_18(book.getAuther());
-            tempBookAttributes[PUBLUSH_DATE] = new Label_18(book.getPublishDate());
-            tempBookAttributes[RATING] = new Label_18(String.format(".2f", book.getRating()));
+            for (SortCriteria sortableColumn : SortCriteria.values()) {
+                tempBookAttributes[sortableColumn.value] = new Label_18(book.getStringAttributes()[sortableColumn.corrospondingDatabaseColumn.value]);
+                
+            }
 
             // adds the listed attributes 
             dashboardBookGrid.addRow(currentRow, tempBookAttributes);
             // plus a BuyButton alingside the attributes
-            dashboardBookGrid.add(new BuyButton(currentRow), BOOK_ATTRIBUTES_TO_PREVIEW+1, currentRow);
+            dashboardBookGrid.add(new BuyButton(currentRow), BOOK_ATTRIBUTES_TO_PREVIEW, currentRow);
+
+            currentRow++;
         }
     }
 
@@ -147,7 +162,7 @@ public class DashboardController extends MainController implements Initializable
 
                     try {
                         // add the purchased book to the corrosponding user (activeUser in the Library class)
-                        library.add(bookList[BuyButton.this.rowIndex - 1]);
+                        library.add(getSortedBooks(sortCriteria.value)[BuyButton.this.rowIndex - 1]);
                         
                         // remove the "Buy" button and replace it with the label "Owned" after purchasing a book
                         dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
