@@ -5,13 +5,14 @@ import java.net.URL;
 import java.sql.Array;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import javax.crypto.spec.GCMParameterSpec;
 
+import javafx.beans.property.SetProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -68,6 +69,7 @@ public class userPageController extends MainController implements Initializable{
             BookUser.addRow(currentRow, 
                 new Label_20(book.getTitle()),
                 new HBox( 
+                    new viewButton(currentRow),
                     new deleteButton(currentRow)
                 )
             );
@@ -79,8 +81,8 @@ public class userPageController extends MainController implements Initializable{
         deleteButton(int rowIndex) {
             super("Delete");
             this.rowIndex=rowIndex;
+            setOnAction(getOnAction());
             //code for Action
-
         }
 
     }
@@ -88,11 +90,11 @@ public class userPageController extends MainController implements Initializable{
     class viewButton extends Button{
         private int rowIndex;
         viewButton(int rowIndex){
-            super("Buy");
+            super("view");
             this.rowIndex = rowIndex;
             
-            //code for Action
-
+            }
+            //code for action
         }
     }
 
@@ -103,8 +105,7 @@ public class userPageController extends MainController implements Initializable{
         Label_20(String text){
             super(text);
             setFont(new Font(20));
-            setLayoutX(38);
-            setLayoutY(125);
+            setPadding(new Insets(5, 20, 5, 20));
         }
     }
-}
+

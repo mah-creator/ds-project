@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Library {
     private BookDatabase bookDatabase = new BookDatabase();
     private UserDatabase userDatabase = new UserDatabase();
-    private HashMap<User, ArrayList<Book>> userBookMap = new HashMap();
+    private HashMap<User, ArrayList<Book>> userBookMap = new HashMap<>();
 
     // this defines the user that is currently logged into the library system
     // where only one user can use the system at a time
@@ -20,7 +20,7 @@ public class Library {
         if(userBookMap.containsKey(activeUser) && userBookMap.get(activeUser) != null);
 
         else {
-            ArrayList<Book> bookList = new ArrayList();
+            ArrayList<Book> bookList = new ArrayList<>();
             userBookMap.put(activeUser, bookList);
         }
         
@@ -49,7 +49,7 @@ public class Library {
             User user = userDatabase.getUser(email, password);
 
             if(!userBookMap.containsKey(user)){ 
-                ArrayList<Book> bookList = new ArrayList();
+                ArrayList<Book> bookList = new ArrayList<>();
                 userBookMap.put(user, bookList);
             }
             logUserOut();
