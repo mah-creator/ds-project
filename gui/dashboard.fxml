@@ -50,7 +50,7 @@
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="72.0" prefWidth="343.0" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField prefHeight="48.0" prefWidth="338.0" promptText="Search a bock here" VBox.vgrow="ALWAYS">
+                  <TextField fx:id="searchBar" prefHeight="48.0" prefWidth="338.0" promptText="Search a bock here" VBox.vgrow="ALWAYS">
                      <font>
                         <Font size="14.0" />
                      </font></TextField>
@@ -73,7 +73,7 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <content>
             <GridPane fx:id="dashboardBookGrid" gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0">
               <columnConstraints>
