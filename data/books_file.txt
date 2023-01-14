@@ -102,7 +102,7 @@ published_date -> 21/10/2022
 title -> Book l
 author -> Mohammed Abo Aqlain
 isbn -> 133925527
-publisher -> mo7med_nafez
+publisher -> mo7med_nafel
 total_pages -> 450
 rating -> 3.7
 published_date -> 21/10/2022
@@ -111,7 +111,7 @@ published_date -> 21/10/2022
 title -> Book m
 author -> Mohammed Abo Aqlain
 isbn -> 133925527
-publisher -> mo7med_nafez
+publisher -> mo7med_nafem
 total_pages -> 450
 rating -> 3.7
 published_date -> 21/10/2022
@@ -120,7 +120,7 @@ published_date -> 21/10/2022
 title -> Book n
 author -> Mohammed Abo Aqlain
 isbn -> 133925527
-publisher -> mo7med_nafez
+publisher -> mo7med_nafen
 total_pages -> 450
 rating -> 3.7
 published_date -> 21/10/2022
@@ -132,7 +132,7 @@ isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
 rating -> 3.7
-published_date -> 21/10/2022
+published_date -> 20/10/2022
 
 16
 title -> Book p
@@ -141,7 +141,7 @@ isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
 rating -> 3.7
-published_date -> 21/10/2022
+published_date -> 19/10/2022
 
 17
 title -> Book q
@@ -150,7 +150,7 @@ isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
 rating -> 3.7
-published_date -> 21/10/2022
+published_date -> 18/10/2022
 
 18
 title -> Book r
@@ -194,7 +194,7 @@ author -> Mohammed Abo Aqlain
 isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
-rating -> 3.7
+rating -> 3.65
 published_date -> 21/10/2022
 
 23
@@ -203,30 +203,30 @@ author -> Mohammed Abo Aqlain
 isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
-rating -> 3.7
+rating -> 3.6
 published_date -> 21/10/2022
 
 24
 title -> Book x
-author -> Mohammed Abo Aqlain
+author -> Cohammed Abo Aqlain
 isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
-rating -> 3.7
+rating -> 3.55
 published_date -> 21/10/2022
 
 25
 title -> Book y
-author -> Mohammed Abo Aqlain
+author -> Bohammed Abo Aqlain
 isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450
-rating -> 3.7
+rating -> 3.5
 published_date -> 21/10/2022
 
 26
 title -> Book z
-author -> Mohammed Abo Aqlain
+author -> Aohammed Abo Aqlain
 isbn -> 133925527
 publisher -> mo7med_nafez
 total_pages -> 450

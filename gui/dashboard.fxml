@@ -56,13 +56,13 @@
                      </font></TextField>
                </children>
             </VBox>
-            <MenuButton minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" text="A - Z">
+            <MenuButton fx:id="sortMenuButton" minWidth="105.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0">
                <items>
-                  <MenuItem mnemonicParsing="false" text="A - Z" />
-                  <MenuItem mnemonicParsing="false" text="author" />
-                  <MenuItem mnemonicParsing="false" text="publisher" />
-                  <MenuItem mnemonicParsing="false" text="publish date" />
-                  <MenuItem mnemonicParsing="false" text="rating" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortName" text="A - Z" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortAuthor" text="author" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortPublisher" text="publisher" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortPublishDate" text="publish date" />
+                  <MenuItem mnemonicParsing="false" onAction="#sortRating" text="rating" />
                </items>
                <padding>
                   <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
