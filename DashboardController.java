@@ -1,7 +1,9 @@
 import java.io.File;
 import java.net.URL;
+import javafx.util.Duration;
 import java.util.ResourceBundle;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +13,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
@@ -18,9 +24,28 @@ public class DashboardController extends MainController implements Initializable
     @FXML
     GridPane dashboardBookGrid;
 
+    @FXML
+    TextField searchBar;
+
+    @FXML
+    ScrollPane scrollPane;
+
+    private FadeTransition ft = new FadeTransition(Duration.millis(200));
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listBooksForDashboard();
+    
+        setUpFadeTransition();
+
+        searchBar.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode() == KeyCode.ENTER){
+                    searchForBook(searchBar.getText());
+                }
+            }
+        });
     }
 
     @FXML
@@ -62,6 +87,26 @@ public class DashboardController extends MainController implements Initializable
             if(book.equals(book2)) return true;
         }
         return false;
+    }
+
+    private void searchForBook(String bookName){
+        for (int i = 6; i < dashboardBookGrid.getChildren().size() ; i+=6) {
+            Label tempLabel = (Label)dashboardBookGrid.getChildren().get(i);
+
+            if(tempLabel.getText().equalsIgnoreCase(bookName)){
+                ft.setNode(tempLabel);
+                scrollPane.setVvalue(tempLabel.getLayoutY()/primaryStage.getHeight());
+                ft.play();
+                break;
+            }
+        }
+    }
+
+    private void setUpFadeTransition(){
+        ft.setFromValue(0.0);
+        ft.setToValue(1.0);
+        ft.setCycleCount(5);
+        ft.setAutoReverse(true);
     }
 
     /**
