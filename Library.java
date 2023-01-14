@@ -11,8 +11,8 @@ public class Library {
     private User activeUser;
     
     // returns all books from the BookDatabase
-    Book[] getBookList() {
-        return bookDatabase.getBookList();
+    Book[][] getBookList() {
+        return bookDatabase.getDifferentlySotedBookLists();
     }
 
     // adds a book to the logged-in user (activeUser) 
