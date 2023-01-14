@@ -79,7 +79,7 @@ public class DashboardController extends MainController implements Initializable
                         dashboardBookGrid.getChildren().set(6*(BuyButton.this.rowIndex+1) - 1, ownedLabel);
                         GridPane.setConstraints(ownedLabel, 5, rowIndex);
                     } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
+                        e.printStackTrace();
                     }
 
                 }
