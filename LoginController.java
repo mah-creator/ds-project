@@ -29,17 +29,18 @@ public class LoginController extends MainController implements Initializable{
 
     @FXML
     public void logIn() throws Exception{
-        boolean loggedIn = library.logUserIn(userNameField.getText(), passwordField.getText());
-        if(loggedIn){
-            Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
-            Scene scene = new Scene(parent);
-            primaryStage.setScene(scene);
-        }
-        else{
-            userNameField.setText("");
-            passwordField.setText("");
-            primaryStage.getScene().getRoot().requestFocus();
-        }
+            try {
+                library.logUserIn(userNameField.getText(), passwordField.getText());
+                Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
+                Scene scene = new Scene(parent);
+                primaryStage.setScene(scene);
+            } catch (Exception e) {
+                e.printStackTrace();
+                
+                userNameField.setText("");
+                passwordField.setText("");
+                primaryStage.getScene().getRoot().requestFocus();
+            }
     }
     
 }
