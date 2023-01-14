@@ -2,12 +2,10 @@ import java.util.HashMap;
 public class UserDatabase {
     private HashMap<String,User> listOfUser=new HashMap<>();
     // final User admin= new User();
-<<<<<<< HEAD
+
     public UserDatabase(){
-        addUser(10, 20, "123", "123", "123", "null");
+        addUser(1, 1, "123", "123", "123", "123");
     }
-=======
->>>>>>> main
     /**
      * 
      * @param email the email whose enterd by the someone to signin or create account 
@@ -54,15 +52,7 @@ public class UserDatabase {
      * @param password the password that verifies the user
      * @return the User object iff the password checks 
      */
-<<<<<<< HEAD
-    public User getUser(String email, String password){
-        return CheckValidate(email, password)? listOfUser.get(email):null;
-    }
-}
-=======
     public User getUser(String email, String password) {
-        if(checkValidity(email, password)) return listOfUser.get(email);
-        throw new IllegalArgumentException("wrong email or password");
+        return listOfUser.get(email);
     }
 }
->>>>>>> main

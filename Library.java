@@ -5,12 +5,13 @@ public class Library {
     private BookDatabase bookDatabase = new BookDatabase();
     private UserDatabase userDatabase = new UserDatabase();
     private HashMap<User, ArrayList<Book>> userBookMap = new HashMap();
+
     // this defines the user that is currently logged into the library system
     // where only one user can use the system at a time
-    public User activeUser;
+    private User activeUser;
+    
     // returns all books from the BookDatabase
     Book[] getBookList() {
-        
         return bookDatabase.getBookList();
     }
 
@@ -28,16 +29,12 @@ public class Library {
     }
     
     // returns the list of books corresponding to the logged-in user
-<<<<<<< HEAD
-    ArrayList<Book> getUserBooksList(){
-=======
     Book[] getUserBooksList(){
         if(activeUser == null) throw new IllegalStateException("No user is currently logged inthe user have no books into their account");
         else if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
         
->>>>>>> main
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
-        return userBooksList;
+        return userBooksList.toArray(new Book[userBooksList.size()]);
     }
 
     // logs-out the user by removing the activeUser pointer
@@ -47,33 +44,17 @@ public class Library {
 
     boolean logUserIn(String email, String password){
         // get the user if exists and check password validity
-        User user = userDatabase.getUser(email, password);
+        boolean exist=userDatabase.checkValidity(email, password);
+        if(exist){
+            User user = userDatabase.getUser(email, password);
 
-        if(user == null) return false;
-        
-        if(!userBookMap.containsKey(user)){ 
-            ArrayList<Book> bookList = new ArrayList();
-            userBookMap.put(user, bookList);
+            if(!userBookMap.containsKey(user)){ 
+                ArrayList<Book> bookList = new ArrayList();
+                userBookMap.put(user, bookList);
+            }
+            logUserOut();
+            activeUser = user;
         }
-
-        activeUser = user;
-        return true;
-    }
-
-    // logs-out the user by removing the activeUser pointer
-    void logUserOut(){
-        activeUser = null;
-    }
-
-    void logUserIn(String email, String password){
-        // get the user if exists and check password validity
-        User user = userDatabase.getUser(email, password);
-
-        if(!userBookMap.containsKey(user)){ 
-            ArrayList<Book> bookList = new ArrayList();
-            userBookMap.put(user, bookList);
-        }
-        logUserOut();
-        activeUser = user;
+        return exist;
     }
 }
