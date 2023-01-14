@@ -15,18 +15,27 @@ public class Library {
     }
 
     // adds a book to the logged-in user (activeUser) 
-    void add(Book book){
-        if(userBookMap.containsKey(activeUser))
-            userBookMap.get(activeUser).add(book);
+    void add(Book book) throws IllegalStateException{
+        if(userBookMap.containsKey(activeUser) && userBookMap.get(activeUser) != null);
 
-        else if(!userBookMap.containsKey(activeUser)){
+        else {
             ArrayList<Book> bookList = new ArrayList();
-            bookList.add(book);
+            userBookMap.put(activeUser, bookList);
         }
+        
+        if(!userBookMap.get(activeUser).contains(book)) userBookMap.get(activeUser).add(book);
+        else throw new IllegalStateException("User already bought this book");
     }
     
     // returns the list of books corresponding to the logged-in user
+<<<<<<< HEAD
     ArrayList<Book> getUserBooksList(){
+=======
+    Book[] getUserBooksList(){
+        if(activeUser == null) throw new IllegalStateException("No user is currently logged inthe user have no books into their account");
+        else if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
+        
+>>>>>>> main
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
         return userBooksList;
     }
@@ -49,5 +58,22 @@ public class Library {
 
         activeUser = user;
         return true;
+    }
+
+    // logs-out the user by removing the activeUser pointer
+    void logUserOut(){
+        activeUser = null;
+    }
+
+    void logUserIn(String email, String password){
+        // get the user if exists and check password validity
+        User user = userDatabase.getUser(email, password);
+
+        if(!userBookMap.containsKey(user)){ 
+            ArrayList<Book> bookList = new ArrayList();
+            userBookMap.put(user, bookList);
+        }
+        logUserOut();
+        activeUser = user;
     }
 }
