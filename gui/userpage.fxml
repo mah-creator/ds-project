@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -44,13 +45,13 @@
                               <Font name="System Bold Italic" size="23.0" />
                            </font>
                         </Label>
-                        <GridPane fx:id="BookUser" gridLinesVisible="true" layoutX="9.0" layoutY="92.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="253.0">
+                        <GridPane fx:id="BookUser" gridLinesVisible="true" layoutX="12.0" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="250.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="128.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="117.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="132.33334350585938" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.66665649414062" minWidth="10.0" prefWidth="117.66665649414062" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="66.0" minHeight="30.0" prefHeight="33.333343505859375" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="31.0" prefWidth="107.0" text="opertion" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
@@ -165,5 +166,6 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <Button mnemonicParsing="false" text="Button" />
    </children>
 </VBox>

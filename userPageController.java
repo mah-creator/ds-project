@@ -1,14 +1,10 @@
-import java.awt.Color;
-import java.beans.EventHandler;
 import java.io.File;
 import java.net.URL;
-import java.sql.Array;
-import java.util.List;
 import java.util.ResourceBundle;
-import javax.crypto.spec.GCMParameterSpec;
 
-import javafx.beans.property.SetProperty;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 
 public class userPageController extends MainController implements Initializable{
     private Book[] listOfBookUser;
@@ -55,7 +50,7 @@ public class userPageController extends MainController implements Initializable{
 
     //back to Dashbord
     @FXML void goToDashBord() throws Exception{
-        Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
+        Parent parent = FXMLLoader.load((new File(".\\gui\\TestDController.fxml")).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
     }
@@ -64,7 +59,7 @@ public class userPageController extends MainController implements Initializable{
     //put the book the user in grid pane
     private void listBooksForUser(){
         int currentRow = 1;
-        for (Book book : library.getUserBooksList()) {
+        for (Book book : listOfBookUser) {
 
             BookUser.addRow(currentRow, 
                 new Label_20(book.getTitle()),
@@ -81,8 +76,16 @@ public class userPageController extends MainController implements Initializable{
         deleteButton(int rowIndex) {
             super("Delete");
             this.rowIndex=rowIndex;
-            setOnAction(getOnAction());
+            setAlignment(Pos.CENTER);
+            setTranslateX(62);
             //code for Action
+            setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    // TODO Auto-generated method stub
+                    
+                }
+            });
         }
 
     }
@@ -92,9 +95,11 @@ public class userPageController extends MainController implements Initializable{
         viewButton(int rowIndex){
             super("view");
             this.rowIndex = rowIndex;
-            
+            setAlignment(Pos.CENTER);
+            setTranslateX(8);
+
             }
-            //code for action
+            //code for
         }
     }
 
