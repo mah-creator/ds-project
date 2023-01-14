@@ -39,7 +39,7 @@ public class UserDatabase {
         if(exist(email)) throw new IllegalArgumentException("This email is already registered");
 
         User user=new User(id, password, age, email, firstName, lastName);
-        listOfUser.put(email, user);
+        listOfUser.put(user.getEmail(), user);
         return user;
     }
 

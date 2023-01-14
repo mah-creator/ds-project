@@ -31,7 +31,7 @@ public class Library {
     // returns the list of books corresponding to the logged-in user
     Book[] getUserBooksList(){
         if(activeUser == null) throw new IllegalStateException("No user is currently logged inthe user have no books into their account");
-        if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
+        else if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
         
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
         return userBooksList.toArray(new Book[userBooksList.size()]);
@@ -39,7 +39,6 @@ public class Library {
 
     // logs-out the user by removing the activeUser pointer
     void logUserOut(){
-        if(activeUser == null) throw new IllegalStateException("No user in currently logged in");
         activeUser = null;
     }
 
