@@ -21,12 +21,25 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
 public class DashboardController extends MainController implements Initializable{
+    // the number off attributes that will be displayed in the dashboard of the programme
+    static final int BOOK_ATTRIBUTES_TO_PREVIEW = 5;
+
+    // a difinition of how the attributes are ordered
+    static final int TITLE = 0;
+    static final int AUTHOR = 1;
+    static final int PUBLISHER = 2;
+    static final int PUBLUSH_DATE = 3;
+    static final int RATING = 4;
+
+    // the grid which lists the books to the user
     @FXML
     GridPane dashboardBookGrid;
-
+    
+    // a TextField where you search for a book using it's name
     @FXML
     TextField searchBar;
 
+    // the pane that encapsulates the dashboardBookGrid
     @FXML
     ScrollPane scrollPane;
 
@@ -42,7 +55,7 @@ public class DashboardController extends MainController implements Initializable
             @Override
             public void handle(KeyEvent event) {
                 if(event.getCode() == KeyCode.ENTER){
-                    searchForBook(searchBar.getText());
+                    searchABookForSearchBar(searchBar.getText());
                 }
             }
         });
@@ -68,20 +81,26 @@ public class DashboardController extends MainController implements Initializable
     private void listBooksForDashboard(){
         int currentRow = 1;
         for (Book book : bookList) {
+            // dont list the book at dashboard
+            // if the logged-in user owns it
             if (userHasBook(book)) continue;
-            
-            dashboardBookGrid.addRow(currentRow, 
-                new Label_18(book.getTitle()), 
-                new Label_18(book.getAuther()), 
-                new Label_18(book.getPublisher()), 
-                new Label_18(book.getPublishDate()), 
-                new Label_18(String.format("%.2f", book.getRating())), 
-                new BuyButton(currentRow)
-            );
 
-            currentRow++;
+            // gets the attributes listed above
+            Label_18[] tempBookAttributes = new Label_18[BOOK_ATTRIBUTES_TO_PREVIEW];
+            tempBookAttributes[TITLE] = new Label_18(book.getTitle());
+            tempBookAttributes[AUTHOR] = new Label_18(book.getAuther());
+            tempBookAttributes[PUBLISHER] = new Label_18(book.getAuther());
+            tempBookAttributes[PUBLUSH_DATE] = new Label_18(book.getPublishDate());
+            tempBookAttributes[RATING] = new Label_18(String.format(".2f", book.getRating()));
+
+            // adds the listed attributes 
+            dashboardBookGrid.addRow(currentRow, tempBookAttributes);
+            // plus a BuyButton alingside the attributes
+            dashboardBookGrid.add(new BuyButton(currentRow), BOOK_ATTRIBUTES_TO_PREVIEW+1, currentRow);
         }
     }
+
+    // checks with the Library if the logged-in user already has this book 
     private boolean userHasBook(Book book){
         for (Book book2 : library.getUserBooksList()) {
             if(book.equals(book2)) return true;
@@ -89,7 +108,8 @@ public class DashboardController extends MainController implements Initializable
         return false;
     }
 
-    private void searchForBook(String bookName){
+    // search the book grid for a book with a specified name
+    private void searchABookForSearchBar(String bookName){
         for (int i = 6; i < dashboardBookGrid.getChildren().size() ; i+=6) {
             Label tempLabel = (Label)dashboardBookGrid.getChildren().get(i);
 
@@ -102,6 +122,8 @@ public class DashboardController extends MainController implements Initializable
         }
     }
 
+    // defines several attributes for a transition animation object
+    // to be used later on
     private void setUpFadeTransition(){
         ft.setFromValue(0.0);
         ft.setToValue(1.0);
