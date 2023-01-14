@@ -3,13 +3,16 @@ import java.io.File;
 import java.util.*;
 
 public class BookDatabase {
-    private TreeMap<String, Book> bookList = new TreeMap();
+    static final int NUMBER_OF_SORTING_CRITERIA = SortCriteria.values().length;
+
+    private TreeMap<String, Book>[] allBookLists = new TreeMap[NUMBER_OF_SORTING_CRITERIA];
     private int booksNumber;
     private final String dataFilePath = ".\\data\\books_file.txt";
 
     private Scanner input;
 
     public BookDatabase(){
+        constructListOfBooks();
         try{
             input = new Scanner(new File(dataFilePath));
     
@@ -21,6 +24,16 @@ public class BookDatabase {
 
     public int getBooksNumber(){
     	return booksNumber;
+    }
+
+    private void constructListOfBooks(){
+        for (SortCriteria sortCriteria : SortCriteria.values()) {
+            addList(sortCriteria);
+        }
+    }
+    private void addList(SortCriteria sortCriteria){
+        TreeMap<String, Book> bookList = new TreeMap();
+        allBookLists[sortCriteria.value] = bookList;
     }
 
     private void extractData(){
@@ -36,6 +49,7 @@ public class BookDatabase {
             tempBook = new Book();
 
             tempBookAttributes[0] = input.nextLine();
+
             for (int j = 1; j < Book.ATTRIBUTES_NUMBER; j++) {
                 line = input.nextLine().split(" -> ");
                 attributeValue = line.length == 1 ? null : line[1]; 
@@ -43,16 +57,28 @@ public class BookDatabase {
             }
             tempBook.setAttributes(tempBookAttributes);
 
-            bookList.put(tempBook.getTitle(), tempBook);
+            for (SortCriteria sortCriteria : SortCriteria.values()) {
+                if(sortCriteria == SortCriteria.BOOK_NAME)
+                    allBookLists[sortCriteria.value].put(tempBookAttributes[sortCriteria.corrospondingDatabaseColumn.value], tempBook);
+                else
+                    allBookLists[sortCriteria.value].put(tempBookAttributes[sortCriteria.corrospondingDatabaseColumn.value] + tempBook.getID(), tempBook);
+
+                
+            }
         }
     }
 
     public Book getBook(String bookName){
-        if(!bookList.containsKey(bookName) || bookList.get(bookName) == null) throw new IllegalStateException("this Book isn't in the database");
-        return bookList.get(bookName);
+        if(!allBookLists[SortCriteria.BOOK_NAME.value].containsKey(bookName) || allBookLists[SortCriteria.BOOK_NAME.value].get(bookName) == null) throw new IllegalStateException("this Book isn't in the database");
+        return allBookLists[SortCriteria.BOOK_NAME.value].get(bookName);
     }
 
-    public Book[] getBookList(){
-        return bookList.values().toArray(new Book[bookList.size()]);
+    public Book[][] getDifferentlySotedBookLists(){
+        Book[][] allBooksSortedDifferently = new Book[NUMBER_OF_SORTING_CRITERIA][];
+        int i = 0;
+        for (TreeMap<String,Book> treeMap : allBookLists) {
+            allBooksSortedDifferently[i++] = treeMap.values().toArray(new Book[treeMap.size()]);
+        }
+        return allBooksSortedDifferently;
     }
 }
