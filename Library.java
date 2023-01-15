@@ -4,15 +4,17 @@ import java.util.HashMap;
 public class Library {
     private BookDatabase bookDatabase = new BookDatabase();
     private UserDatabase userDatabase = new UserDatabase();
+
+    // a mapping between the user and their list of bought books
     private HashMap<User, ArrayList<Book>> userBookMap = new HashMap();
 
     // this defines the user that is currently logged into the library system
     // where only one user can use the system at a time
     private User activeUser;
     
-    // returns all books from the BookDatabase
-    Book[][] getBookList() {
-        return bookDatabase.getDifferentlySotedBookLists();
+    // returns a list of all database books sorted based on the desired sort criteria
+    Book[] getSortedBooks(SortCriteria sortCriteria){
+        return bookDatabase.getSortedBooksList(sortCriteria);
     }
 
     // adds a book to the logged-in user (activeUser) 
@@ -29,7 +31,7 @@ public class Library {
     }
     
     // returns the list of books corresponding to the logged-in user
-    Book[] getUserBooksList(){
+    Book[] getActiveUserBooks(){
         if(activeUser == null) throw new IllegalStateException("No user is currently logged inthe user have no books into their account");
         else if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
         
