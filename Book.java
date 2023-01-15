@@ -80,24 +80,5 @@ public class Book {
         setTotalPages(attributes[5]);
         setRating(attributes[6]);
         setPublishDate(attributes[7]);
-        // informationBook[0]=getTitle();
-        // informationBook[1]=getAuther();
-        // informationBook[2]=Integer.toString(getID());
-        // informationBook[3]=Long.toString( getIsbn());
-        // informationBook[4]=getPublisher();
-        // informationBook[5]=getPublisher();
-        // informationBook[6]=Float.toString( getRating());
-        // informationBook[7]=Integer.toString(getTotalPages());
-    }
-    public String[] getAttributes(){
-        informationBook[0]=getTitle();
-        informationBook[1]=getAuther();
-        informationBook[2]=Integer.toString(getID());
-        informationBook[3]=Long.toString( getIsbn());
-        informationBook[4]=getPublisher();
-        informationBook[5]=getPublisher();
-        informationBook[6]=Float.toString( getRating());
-        informationBook[7]=Integer.toString(getTotalPages());
-        return informationBook;
     }
 }
