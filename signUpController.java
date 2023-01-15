@@ -26,9 +26,12 @@ public class signUpController extends MainController implements   Initializable{
     public void goToUserPage() throws Exception{
         try {
             chekFillText();
-            UserDatabase.addUser(0, 123, password.getText(), email.getText(), "0", "0");
+            UserDatabase.addUser(
+                Integer.parseInt(id.getText()),Integer.parseInt(Age.getText()),
+                password.getText(),email.getText(),
+                firstName.getText(), lastName.getText()
+            );
             library.logUserIn(password.getText(),email.getText());
-            // UserDatabase.addUser(id.getText(), password.getText(), Age.getText(), email.getText(), firstName.getText(), lastName.getText());
             Parent parent = FXMLLoader.load((new File(".\\gui\\TestDController.fxml")).toURI().toURL());
             Scene scene = new Scene(parent);
             primaryStage.setScene(scene);

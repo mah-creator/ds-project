@@ -57,9 +57,11 @@ public class userPageController extends MainController implements Initializable{
 
     @FXML 
     void Update() throws Exception{
-        Parent parent = FXMLLoader.load((new File(".\\gui\\userpage.fxml")).toURI().toURL());
-        Scene scene = new Scene(parent);
-        primaryStage.setScene(scene);
+        if(listOfBookUser.length>0){
+            Parent parent = FXMLLoader.load((new File(".\\gui\\userpage.fxml")).toURI().toURL());
+            Scene scene = new Scene(parent);
+            primaryStage.setScene(scene);
+        }
     }
     //put the book the user in grid pane
     public  void listBooksForUser(){

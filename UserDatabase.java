@@ -53,6 +53,11 @@ public class UserDatabase {
      * @return the User object iff the password checks 
      */
     public User getUser(String email, String password) {
+       if( checkValidity(email, password)){
+            throw new IllegalStateException("b ghc");
+
+       }
+
         return listOfUser.get(email);
     }
 }
