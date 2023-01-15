@@ -21,7 +21,7 @@ public class userPageController extends MainController implements Initializable{
     private Book[] listOfBookUser;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        listOfBookUser=library.getUserBooksList(); 
+        listOfBookUser=library.getActiveUserBooks(); 
         listBooksForUser();
     }
     //information for chosen book
@@ -65,7 +65,7 @@ public class userPageController extends MainController implements Initializable{
     }
     //put the book the user in grid pane
     public  void listBooksForUser(){
-        listOfBookUser=library.getUserBooksList();
+        listOfBookUser=library.getActiveUserBooks();
         int currentRow = 1;
         for (Book book : listOfBookUser) {
 
