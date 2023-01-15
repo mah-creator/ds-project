@@ -1,13 +1,17 @@
 import java.util.HashMap;
 public class UserDatabase {
-    private HashMap<String,User> listOfUser=new HashMap<>();
+    private static HashMap<String,User> listOfUser=new HashMap<>();
     // final User admin= new User();
+
+    public UserDatabase(){
+        addUser(1, 1, "123", "123", "123", "123");
+    }
     /**
      * 
      * @param email the email whose enterd by the someone to signin or create account 
      * @return return object of user if exist else null
      */
-    private boolean exist(String email){
+    private static boolean exist(String email){
         if(listOfUser.containsKey(email)){
             return listOfUser.get(email) != null;
         }
@@ -49,7 +53,8 @@ public class UserDatabase {
      * @return the User object iff the password checks 
      */
     public User getUser(String email, String password) {
-        if(checkValidity(email, password)) return listOfUser.get(email);
-        throw new IllegalArgumentException("wrong email or password");
+       if(!checkValidity(email, password)) throw new WrongUserCredentialsException();
+
+        return listOfUser.get(email);
     }
 }

@@ -38,6 +38,7 @@ public class Library {
         return (userBooksList).toArray(new Book[userBooksList.size()]);
     }
 
+
     // logs-out the user by removing the activeUser pointer
     void logUserOut(){
         activeUser = null;
@@ -58,5 +59,8 @@ public class Library {
 
     public void removeBookFromeUser(Book book) {
         userBookMap.get(activeUser).remove(book.getTitle());
+    }
+    public void addUser(int id,int age, String password ,String email,String firstName,String lastName){
+        userDatabase.addUser(id, age, password, email, firstName, lastName);
     }
 }

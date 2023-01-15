@@ -29,7 +29,7 @@
                   </Label>
                </children>
             </HBox>
-            <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url(file:///E:/java/user.png); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center; -fx-background-color: transparent;">
+            <MenuButton minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="60.0" style="-fx-background-image: url(file:///../icon/user.png); -fx-background-repeat: no-repeat; -fx-background-size: cover; -fx-background-position: center; -fx-background-color: transparent;">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#goToUserPage" text="My Account" />
                 <MenuItem mnemonicParsing="false" onAction="#logOut" text="Log Out" />
