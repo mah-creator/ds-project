@@ -7,12 +7,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class LoginController extends MainController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
+
+    @FXML
+    Label errorLabel;
 
     @FXML
     TextField userNameField;
@@ -31,12 +35,12 @@ public class LoginController extends MainController implements Initializable{
             Scene scene = new Scene(parent);
             primaryStage.setScene(scene);
         } catch (WrongUserCredentialsException e) {
-            System.out.println(e.getMessage() + "\n");
-            e.printStackTrace();
-
             userNameField.setText("");
             passwordField.setText("");
             primaryStage.getScene().getRoot().requestFocus();
+
+            errorLabel.setText(e.getMessage());
+
         }
     }
 

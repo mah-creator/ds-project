@@ -34,6 +34,11 @@
             <Font size="18.0" />
          </font>
       </Button>
+      <Label fx:id="errorLabel" alignment="CENTER" minHeight="30.0" prefHeight="33.0" prefWidth="332.0" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="332.0" spacing="10.0" VBox.vgrow="ALWAYS">
          <children>
             <Button alignment="TOP_CENTER" maxHeight="25.0" minHeight="20.0" mnemonicParsing="false" onAction="#goToSignUpPage" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Create a new account" textFill="#2a16dc">
