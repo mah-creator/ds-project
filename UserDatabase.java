@@ -3,9 +3,6 @@ public class UserDatabase {
     private static HashMap<String,User> listOfUser=new HashMap<>();
     // final User admin= new User();
 
-    public UserDatabase(){
-        addUser(1, 1, "123", "123", "123", "123");
-    }
     /**
      * 
      * @param email the email whose enterd by the someone to signin or create account 
@@ -53,7 +50,7 @@ public class UserDatabase {
      * @return the User object iff the password checks 
      */
     public User getUser(String email, String password) {
-       if(!checkValidity(email, password)) throw new WrongUserCredentialsException();
+       if(!checkValidity(email, password))throw new WrongUserCredentialsException();
 
         return listOfUser.get(email);
     }
