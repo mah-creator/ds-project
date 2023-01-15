@@ -8,12 +8,11 @@ import javafx.stage.Stage;
 public class App extends Application{
     static Stage primaryStage;
     static Library library;
-    static Book[] bookList;
     @Override
     public void start(Stage primaryStage) throws Exception {
         App.primaryStage = primaryStage;
         App.library = new Library();
-        App.bookList = library.getBookList();
+        
         primaryStage.setMinWidth(800);
         Scene scene = new Scene(FXMLLoader.load((new File(MainController.INITIAL_FXML_FILE).toURI().toURL())));
         scene.getRoot().requestFocus();
