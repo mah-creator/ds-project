@@ -10,7 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class signUpController extends MainController implements   Initializable{
+public class SignUpController extends MainController implements   Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {   }

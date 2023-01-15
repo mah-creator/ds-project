@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
-public class userPageController extends MainController implements Initializable{
+public class UserPageController extends MainController implements Initializable{
     private Book[] listOfBookUser;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -96,7 +96,6 @@ public class userPageController extends MainController implements Initializable{
                 public void handle(ActionEvent event) {
 
                     int indexRow=GridPane.getRowIndex(DeleteButton.this);
-                    System.out.println(indexRow);
                     for (int i = indexRow*3-1; i < rowIndex*3 + 2; i++) {
                         BookUser.getChildren().get(i).disableProperty().set(true);
                     }

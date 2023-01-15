@@ -47,7 +47,7 @@ public class LoginController extends MainController implements Initializable{
     // loads the signup page when triggered
     @FXML
     public void goToSignUpPage() throws Exception{
-        Parent parent = FXMLLoader.load((new File(".\\gui\\Signup.fxml")).toURI().toURL());
+        Parent parent = FXMLLoader.load((new File(".\\gui\\signup.fxml")).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
     }
