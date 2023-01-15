@@ -1,15 +1,14 @@
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -20,7 +19,6 @@ import javafx.scene.text.Font;
 
 public class userPageController extends MainController implements Initializable{
     private Book[] listOfBookUser;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listOfBookUser=library.getUserBooksList(); 
@@ -28,14 +26,16 @@ public class userPageController extends MainController implements Initializable{
     }
     //information for chosen book
     @FXML Label bookTitle;
-    @FXML Label bookIsbn;
     @FXML Label bookAuthor;
+    @FXML Label bookId;
+    @FXML Label bookIsbn;
     @FXML Label bookPublisher;
-    @FXML Label bookRating;
     @FXML Label bookPublishedDate;
-
+    @FXML Label bookRating;
+    @FXML Label bookTotalPages;
     /* the grid pane for book the user */
     @FXML GridPane BookUser;
+
     /*the grid for information to  specific book */
     @FXML GridPane bookDetails;
     // log out forme the account and back to basic page
@@ -71,25 +71,29 @@ public class userPageController extends MainController implements Initializable{
             currentRow++;
         }
     }
+
     class deleteButton extends Button{
         private int rowIndex;
         deleteButton(int rowIndex) {
             super("Delete");
             this.rowIndex=rowIndex;
             setAlignment(Pos.CENTER);
-            setTranslateX(62);
+            setTranslateX(20);
+            setTranslateY(5);
+            setStyle("-fx-background-color:red;-fx-border-width:2px;-fx-border-radius:5;-fx-border-color:#575757;");
+
+
             //code for Action
             setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    // TODO Auto-generated method stub
-                    
+                    // System.out.print(deleteButton.this.rowIndex);
+                    // BookUser.getChildren().remove(deleteButton.this.rowIndex);
                 }
             });
         }
-
     }
-
+    
     class viewButton extends Button{
         private int rowIndex;
         viewButton(int rowIndex){
@@ -97,14 +101,38 @@ public class userPageController extends MainController implements Initializable{
             this.rowIndex = rowIndex;
             setAlignment(Pos.CENTER);
             setTranslateX(8);
-
-            }
-            //code for
+            setTranslateY(5);
+            setStyle("-fx-background-color: #19f1b8;-fx-border-width:2px;-fx-border-radius:5;-fx-border-color:#575757;");
+            setOnAction(new EventHandler<ActionEvent>() {
+                
+                @Override
+                public void handle(ActionEvent event) {
+                    String[] dataForBook =listOfBookUser[viewButton.this.rowIndex-1].getAttributes();
+                    putText(dataForBook);
+                }
+            });
+            
         }
     }
+    //put informatin for book in grid 
+    private void putText(String[] dataForBook){
+        for(int i=0;i<dataForBook.length;i++){
+            switch(i){
+                case  0: bookTitle.setText(dataForBook[i]);break;
+                case  1: bookAuthor.setText(dataForBook[i]);break;
+                case  2: bookId.setText(dataForBook[i]);break;
+                case  3: bookIsbn.setText(dataForBook[i]);break;
+                case  4: bookPublisher.setText(dataForBook[i]);break;
+                case  5: bookPublishedDate.setText(dataForBook[i]);break;
+                case  6: bookRating.setText(dataForBook[i]);break;
+                case  7: bookTotalPages.setText(dataForBook[i]);break;
 
+            }
+        }
+
+    }
     /**
-     * Label class of font size 18
+     * Label class of font size 20
      */
     class Label_20 extends Label{
         Label_20(String text){
@@ -113,4 +141,11 @@ public class userPageController extends MainController implements Initializable{
             setPadding(new Insets(5, 20, 5, 20));
         }
     }
-
+    class Label_10 extends Label{
+        Label_10(String text){
+            super(text);
+            setFont(new Font(15));
+            setPadding(new Insets(5, 20, 5, 20));
+        }
+    }
+}

@@ -14,7 +14,6 @@ public class App extends Application{
         App.primaryStage = primaryStage;
         App.library = new Library();
         App.bookList = library.getBookList();
-        
         primaryStage.setMinWidth(800);
         Scene scene = new Scene(FXMLLoader.load((new File(MainController.INITIAL_FXML_FILE).toURI().toURL())));
         scene.getRoot().requestFocus();

@@ -30,8 +30,8 @@ public class Library {
     
     // returns the list of books corresponding to the logged-in user
     Book[] getUserBooksList(){
-        if(activeUser == null) throw new IllegalStateException("No user is currently logged inthe user have no books into their account");
-        else if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
+        // if(activeUser == null) throw new IllegalStateException("No user is currently logged inthe user have no books into their account");
+        // else if(userBookMap.get(activeUser) == null) throw new IllegalStateException("The user have no books in their account");
         
         ArrayList<Book> userBooksList = userBookMap.get(activeUser);
         return userBooksList.toArray(new Book[userBooksList.size()]);
@@ -56,5 +56,8 @@ public class Library {
             activeUser = user;
         }
         return exist;
+    }
+
+    public void removeBookFromeUser(Book book) {
     }
 }

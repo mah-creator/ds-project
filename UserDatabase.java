@@ -1,6 +1,6 @@
 import java.util.HashMap;
 public class UserDatabase {
-    private HashMap<String,User> listOfUser=new HashMap<>();
+    private static HashMap<String,User> listOfUser=new HashMap<>();
     // final User admin= new User();
 
     public UserDatabase(){
@@ -11,7 +11,7 @@ public class UserDatabase {
      * @param email the email whose enterd by the someone to signin or create account 
      * @return return object of user if exist else null
      */
-    private boolean exist(String email){
+    private static boolean exist(String email){
         if(listOfUser.containsKey(email)){
             return listOfUser.get(email) != null;
         }
@@ -38,7 +38,7 @@ public class UserDatabase {
      * @param lastName
      * @return if the email hase enterd id exist return null else return the User object whose created
      */
-    public User addUser(int id,int age, String password ,String email,String firstName,String lastName){
+    public static User addUser(int id,int age, String password ,String email,String firstName,String lastName){
 
         if(exist(email)) throw new IllegalArgumentException("This email is already registered");
 
