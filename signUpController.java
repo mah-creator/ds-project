@@ -25,13 +25,14 @@ public class signUpController extends MainController implements   Initializable{
     @FXML
     public void goToUserPage() throws Exception{
         try {
-            // chekFillText();
+            chekFillText();
             library.addUser(
                 Integer.parseInt(id.getText()),Integer.parseInt(Age.getText()),
                 password.getText(),email.getText(),
                 firstName.getText(), lastName.getText()
             );
-            // library.logUserIn(password.getText(),email.getText());
+            // System.out.print("\n\n" + passwo/rd.);
+            library.logUserIn(email.getText(),password.getText());
             Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
             Scene scene = new Scene(parent);
             primaryStage.setScene(scene);
