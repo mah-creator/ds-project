@@ -3,16 +3,21 @@ import java.io.File;
 import java.util.*;
 
 public class BookDatabase {
+    // the predefiened ways to sort the books in the database
     static final int NUMBER_OF_SORTING_CRITERIA = SortCriteria.values().length;
 
-    private TreeMap<String, Book>[] allBookLists = new TreeMap[NUMBER_OF_SORTING_CRITERIA];
+    // here we have multiple TreeMaps that will store the same books
+    // but for each tree the book will be mapped to a different book attribute
+    private TreeMap<String, Book>[] bookTrees = new TreeMap[NUMBER_OF_SORTING_CRITERIA];
     private int booksNumber;
+
+    //the file storing all books and their information
     private final String dataFilePath = ".\\data\\books_file.txt";
 
     private Scanner input;
 
     public BookDatabase(){
-        constructListOfBooks();
+        constructBookTrees();
         try{
             input = new Scanner(new File(dataFilePath));
     
@@ -22,20 +27,21 @@ public class BookDatabase {
         }catch(Exception e){System.out.println(e.getMessage());}
     }
 
-    public int getBooksNumber(){
-    	return booksNumber;
-    }
-
-    private void constructListOfBooks(){
+    // create a tree for each sort criteria defined in the SortCriteria class
+    private void constructBookTrees(){
         for (SortCriteria sortCriteria : SortCriteria.values()) {
-            addList(sortCriteria);
+            contructTree(sortCriteria);
         }
     }
-    private void addList(SortCriteria sortCriteria){
-        TreeMap<String, Book> bookList = new TreeMap();
-        allBookLists[sortCriteria.value] = bookList;
+
+    // lists all books in a tree that is sorted 
+    // base on the passed parameter sortCriteria
+    private void  contructTree(SortCriteria sortCriteria){
+        TreeMap<String, Book> bookTree = new TreeMap();
+        bookTrees[sortCriteria.value] = bookTree;
     }
 
+    // reads database data from the data file
     private void extractData(){
         Book tempBook;
         String[] tempBookAttributes = new String[Book.ATTRIBUTES_NUMBER];
@@ -57,28 +63,32 @@ public class BookDatabase {
             }
             tempBook.setAttributes(tempBookAttributes);
 
+            // for each sort criteria defined in the SortCriteria class
+            // this will put the same book ectracted from the data file
+            // in muliple trees where it's mapped to a different criteria at each tree 
             for (SortCriteria sortCriteria : SortCriteria.values()) {
                 if(sortCriteria == SortCriteria.BOOK_NAME)
-                    allBookLists[sortCriteria.value].put(tempBookAttributes[sortCriteria.corrospondingDatabaseColumn.value], tempBook);
+                    // the book name by convention is unique and must be
+                    // for sorting to work properly
+                    bookTrees[sortCriteria.value].put(tempBookAttributes[sortCriteria.corrospondingDatabaseColumn.value], tempBook);
                 else
-                    allBookLists[sortCriteria.value].put(tempBookAttributes[sortCriteria.corrospondingDatabaseColumn.value] + tempBook.getID(), tempBook);
+                    // other book attributes aren't guaranteed to be unique, but the book id is
+                    // so to ensure uniqueness the book id is concatenated to the book attribute
+                    // before mapping a book to it
+                    bookTrees[sortCriteria.value].put(tempBookAttributes[sortCriteria.corrospondingDatabaseColumn.value] + tempBook.getID(), tempBook);
 
                 
             }
         }
     }
 
-    public Book getBook(String bookName){
-        if(!allBookLists[SortCriteria.BOOK_NAME.value].containsKey(bookName) || allBookLists[SortCriteria.BOOK_NAME.value].get(bookName) == null) throw new IllegalStateException("this Book isn't in the database");
-        return allBookLists[SortCriteria.BOOK_NAME.value].get(bookName);
+    // returns a list of all books sorted based on the desired sort criteria
+    public Book[] getSortedBooksList(SortCriteria sortCriteria){
+        TreeMap<String, Book> sortedBookTree = bookTrees[sortCriteria.value];
+        return sortedBookTree.values().toArray(new Book[sortedBookTree.size()]);
     }
 
-    public Book[][] getDifferentlySotedBookLists(){
-        Book[][] allBooksSortedDifferently = new Book[NUMBER_OF_SORTING_CRITERIA][];
-        int i = 0;
-        for (TreeMap<String,Book> treeMap : allBookLists) {
-            allBooksSortedDifferently[i++] = treeMap.values().toArray(new Book[treeMap.size()]);
-        }
-        return allBooksSortedDifferently;
+    public int getBooksNumber(){
+        return booksNumber;
     }
 }

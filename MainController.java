@@ -5,12 +5,11 @@ public class MainController{
     static final String INITIAL_FXML_FILE = ".\\gui\\login.fxml";
 
     protected Library library = App.library;
-    protected  Book[][] bookListsSortedDifferently = App.bookListsSortedDifferently;
 
     // get the stage from where it was created (the javafx.application.Application class)
     protected Stage primaryStage = App.primaryStage;   
 
-    protected Book[] getSortedBooks(int sortCriteria){
-        return bookListsSortedDifferently[sortCriteria];
+    protected Book[] getSortedBooks(SortCriteria sortCriteria){
+        return library.getSortedBooks(sortCriteria);
     }
 }

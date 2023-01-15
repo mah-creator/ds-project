@@ -1,3 +1,5 @@
+// this class defines the order of columns in my book database file
+// by setting a numerical value for eavh column to represent it's index
 public enum DatabaseColumn{
     ID(0),
     TITLE(1),

@@ -31,6 +31,7 @@ public class Book {
         return publishDate;
     }
     
+    // returns all attributes a String value
     public String[] getStringAttributes(){
         String[] stringAttributes = new String[ATTRIBUTES_NUMBER];
         stringAttributes[DatabaseColumn.ID.value] = getID() + "";

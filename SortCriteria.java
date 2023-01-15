@@ -1,3 +1,7 @@
+// this class defines the columns that can be sorted according to the BookDatabase class
+// by setting a numerical value for each sortable column
+// and connecting it to the corrosponding column in the database
+// also it defines how this column is sorted by defining a sort label
 public enum SortCriteria{
     BOOK_NAME(0, "A - Z", DatabaseColumn.TITLE),
     BOOK_AUTHOR(1, "author", DatabaseColumn.AUTHOR),
