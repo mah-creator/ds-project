@@ -75,7 +75,7 @@
       </HBox>
       <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <content>
-            <GridPane fx:id="dashboardBookGrid" gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0">
+            <GridPane fx:id="bookGrid" gridLinesVisible="true" prefHeight="91.0" prefWidth="147.0">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />

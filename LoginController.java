@@ -24,11 +24,13 @@ public class LoginController extends MainController implements Initializable{
     public void logIn() throws Exception{
 
         try {
+            // if the credentials don't check will throw a special type of Exception
+            // of type WrongUserCredentialsException
             library.logUserIn(userNameField.getText(), passwordField.getText());
             Parent parent = FXMLLoader.load((new File(".\\gui\\dashboard.fxml")).toURI().toURL());
             Scene scene = new Scene(parent);
             primaryStage.setScene(scene);
-        } catch (IllegalArgumentException e) {
+        } catch (WrongUserCredentialsException e) {
             System.out.println(e.getMessage() + "\n");
             e.printStackTrace();
 
@@ -38,6 +40,7 @@ public class LoginController extends MainController implements Initializable{
         }
     }
 
+    // loads the signup page when triggered
     @FXML
     public void goToSignUpPage() throws Exception{
         Parent parent = FXMLLoader.load((new File(".\\gui\\signup.fxml")).toURI().toURL());
