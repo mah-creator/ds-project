@@ -118,7 +118,7 @@ public class userPageController extends MainController implements Initializable{
                 
                 @Override
                 public void handle(ActionEvent event) {
-                    String[] dataForBook =listOfBookUser[viewButton.this.rowIndex-1].getAttributes();
+                    String[] dataForBook =listOfBookUser[viewButton.this.rowIndex-1].getStringAttributes();
                     putText(dataForBook);
                 }
             });
