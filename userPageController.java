@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
-public class userPageController extends MainController implements Initializable{
+public class UserPageController extends MainController implements Initializable{
     private Book[] listOfBookUser;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +43,7 @@ public class userPageController extends MainController implements Initializable{
     
     @FXML 
     void logOut() throws Exception{
+        library.logUserOut();
         Parent parent = FXMLLoader.load((new File(INITIAL_FXML_FILE)).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
@@ -72,17 +72,17 @@ public class userPageController extends MainController implements Initializable{
             BookUser.addRow(currentRow, 
                 new Label_20(book.getTitle()),
                 new HBox( 
-                    new viewButton(currentRow),
-                    new deleteButton(currentRow)
+                    new ViewButton(currentRow),
+                    new DeleteButton(currentRow)
                 )
             );
             currentRow++;
         }
     }
 
-    class deleteButton extends Button{
+    class DeleteButton extends Button{
         private int rowIndex;
-        deleteButton(int rowIndex) {
+        DeleteButton(int rowIndex) {
             super("Delete");
             this.rowIndex=rowIndex;
             setAlignment(Pos.CENTER);
@@ -95,19 +95,15 @@ public class userPageController extends MainController implements Initializable{
             setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-
-                    library.removeBookFromeUser(listOfBookUser[deleteButton.this.rowIndex-1]);
-
-                    // System.out.print(deleteButton.this.rowIndex);
-                    // BookUser.getChildren().remove(deleteButton.this.rowIndex);
+                    library.removeBookFromeUser(listOfBookUser[DeleteButton.this.rowIndex-1]);
                 }
             });
         }
     }
     
-    class viewButton extends Button{
+    class ViewButton extends Button{
         private int rowIndex;
-        viewButton(int rowIndex){
+        ViewButton(int rowIndex){
             super("view");
             this.rowIndex = rowIndex;
             setAlignment(Pos.CENTER);
@@ -118,7 +114,7 @@ public class userPageController extends MainController implements Initializable{
                 
                 @Override
                 public void handle(ActionEvent event) {
-                    String[] dataForBook =listOfBookUser[viewButton.this.rowIndex-1].getStringAttributes();
+                    String[] dataForBook =listOfBookUser[ViewButton.this.rowIndex-1].getStringAttributes();
                     putText(dataForBook);
                 }
             });
