@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -44,11 +43,12 @@
                <content>
                   <GridPane fx:id="BookUser" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="531.0" prefWidth="435.0" translateX="14.0" translateY="3.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="282.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.33331298828125" minWidth="0.0" prefWidth="141.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="282.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="148.33331298828125" minWidth="0.0" prefWidth="141.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="148.33331298828125" minWidth="10.0" prefWidth="141.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="33.0" minHeight="43.0" prefHeight="30.0" />
+                      <RowConstraints maxHeight="33.0" minHeight="43.0" prefHeight="30.0" valignment="CENTER" />
                     </rowConstraints>
                      <children>
                          <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="391.0" style="-fx-background-color: black; -fx-border-width: 2; -fx-border-color: #575757;" text="book  name" textFill="#b53838" GridPane.columnSpan="2147483647">
@@ -59,11 +59,6 @@
                               <Insets right="150.0" />
                            </padding>
                         </Label>
-                        <Button mnemonicParsing="false" onAction="#Update" prefHeight="33.0" prefWidth="153.0" style="-fx-background-color: black; -fx-border-color: white; -fx-border-radius: 10;" text="Update" textFill="#b53838" GridPane.columnIndex="1">
-                           <font>
-                              <Font name="System Bold Italic" size="15.0" />
-                           </font>
-                        </Button>
                      </children>
                   </GridPane>
                </content>

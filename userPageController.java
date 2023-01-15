@@ -71,10 +71,9 @@ public class userPageController extends MainController implements Initializable{
 
             BookUser.addRow(currentRow, 
                 new Label_20(book.getTitle()),
-                new HBox( 
-                    new ViewButton(currentRow),
-                    new DeleteButton(currentRow)
-                )
+                new ViewButton(currentRow),
+                new DeleteButton(currentRow)
+                
             );
             currentRow++;
         }
@@ -85,9 +84,9 @@ public class userPageController extends MainController implements Initializable{
         DeleteButton(int rowIndex) {
             super("Delete");
             this.rowIndex=rowIndex;
-            setAlignment(Pos.CENTER);
-            setTranslateX(20);
-            setTranslateY(5);
+            // setAlignment(Pos.CENTER);
+            // setTranslateX(8);
+            // setTranslateY(2);
             setStyle("-fx-background-color:red;-fx-border-width:2px;-fx-border-radius:5;-fx-border-color:#575757;");
 
 
@@ -95,6 +94,13 @@ public class userPageController extends MainController implements Initializable{
             setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+
+                    int indexRow=GridPane.getRowIndex(DeleteButton.this);
+                    System.out.println(indexRow);
+                    for (int i = indexRow*3-1; i < rowIndex*3 + 2; i++) {
+                        BookUser.getChildren().get(i).disableProperty().set(true);
+                    }
+                    
                     library.removeBookFromeUser(listOfBookUser[DeleteButton.this.rowIndex-1]);
                 }
             });
@@ -106,9 +112,9 @@ public class userPageController extends MainController implements Initializable{
         ViewButton(int rowIndex){
             super("view");
             this.rowIndex = rowIndex;
-            setAlignment(Pos.CENTER);
-            setTranslateX(8);
-            setTranslateY(5);
+            // setAlignment(Pos.CENTER);
+            // setTranslateX(8);
+            // setTranslateY(2);
             setStyle("-fx-background-color: #19f1b8;-fx-border-width:2px;-fx-border-radius:5;-fx-border-color:#575757;");
             setOnAction(new EventHandler<ActionEvent>() {
                 
