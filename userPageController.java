@@ -41,23 +41,29 @@ public class userPageController extends MainController implements Initializable{
     // log out forme the account and back to basic page
 
     /*back to login page */
+    
     @FXML 
     void logOut() throws Exception{
         Parent parent = FXMLLoader.load((new File(INITIAL_FXML_FILE)).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
     }
-
-    //back to Dashbord
+    // back to Dashbord
     @FXML void goToDashBord() throws Exception{
         Parent parent = FXMLLoader.load((new File(".\\gui\\TestDController.fxml")).toURI().toURL());
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
     }
 
-
+    @FXML 
+    void Update() throws Exception{
+        Parent parent = FXMLLoader.load((new File(".\\gui\\userpage.fxml")).toURI().toURL());
+        Scene scene = new Scene(parent);
+        primaryStage.setScene(scene);
+    }
     //put the book the user in grid pane
-    private void listBooksForUser(){
+    public  void listBooksForUser(){
+        listOfBookUser=library.getUserBooksList();
         int currentRow = 1;
         for (Book book : listOfBookUser) {
 
@@ -87,6 +93,9 @@ public class userPageController extends MainController implements Initializable{
             setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
+
+                    library.removeBookFromeUser(listOfBookUser[deleteButton.this.rowIndex-1]);
+
                     // System.out.print(deleteButton.this.rowIndex);
                     // BookUser.getChildren().remove(deleteButton.this.rowIndex);
                 }
@@ -141,11 +150,5 @@ public class userPageController extends MainController implements Initializable{
             setPadding(new Insets(5, 20, 5, 20));
         }
     }
-    class Label_10 extends Label{
-        Label_10(String text){
-            super(text);
-            setFont(new Font(15));
-            setPadding(new Insets(5, 20, 5, 20));
-        }
-    }
+    
 }

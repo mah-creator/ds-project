@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class Book {
     private int bookID, totalPages;
     private String title, auther, publisher, publishDate;

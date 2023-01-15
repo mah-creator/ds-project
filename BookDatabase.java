@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.*;
 
 public class BookDatabase {
-    private TreeMap<String, Book> bookList = new TreeMap();
+    private TreeMap<String, Book> bookList = new TreeMap<>();
     private int booksNumber;
     private final String dataFilePath = ".\\data\\books_file.txt";
 
